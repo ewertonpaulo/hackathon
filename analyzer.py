@@ -74,7 +74,7 @@ class Capability:
     def melhores_propostas(self):    
         return self.get_from_respostas(16)
 
-    def quel_gov_votaria(self):    
+    def qual_gov_votaria(self):    
         return self.get_from_respostas(17)
 
     def gestao_de_grosso(self):    
@@ -104,16 +104,24 @@ class Capability:
     def apoio_de_senador_honesto(self):    
         return self.get_from_respostas(26)
 
-d = Capability()
-# print(d.redes_sociais_respostas())
-# print(d.interessado_eleicao())
-# print(d.opniao_governador())
-# print(d.gestao_de_grosso())
-# print(d.forma_administracao_grosso())
-# print(d.frase_representa())
-# print(d.apoiadores_de_presidente_())
-# print(d.apoio_de_senador_honesto())
-# print(d.sexo())
-# print(d.primeiro_turno())
-    
-
+class Persona:
+    def __init__(self, candidato):
+        self.c = Capability()
+        self.sexo = self.c.mais_contado(self.c.sexo())
+        self.idade = self.c.mais_contado(self.c.idade())
+        self.escolaridade = self.c.mais_contado(self.c.escolaridade())
+        self.interessado_eleicao = self.c.mais_contado(self.c.interessado_eleicao())
+        self.opniao_governador = self.c.mais_contado(self.c.opniao_governador())
+        self.meio_comunicação = self.c.mais_contado(self.c.meio_comunicação())
+        self.redes_sociais = self.c.mais_contado(self.c.redes_sociais())
+        self.melhores_propostas = self.c.mais_contado(self.c.melhores_propostas())
+        self.qual_gov_votaria = self.c.mais_contado(self.c.qual_gov_votaria())
+        self.gestao_de_grosso = self.c.mais_contado(self.c.gestao_de_grosso())
+        self.forma_administracao_grosso = self.c.mais_contado(self.c.forma_administracao_grosso())
+        self.frase_representa = self.c.mais_contado(self.c.frase_representa())
+        self.apoiadores_de_presidente_ = self.c.mais_contado(self.c.apoiadores_de_presidente_())
+        self.apoio_bolsonaro = self.c.mais_contado(self.c.apoio_bolsonaro())
+        self.primeiro_turno = self.c.mais_contado(self.c.primeiro_turno())
+        self.repetir_voto_papai = self.c.mais_contado(self.c.repetir_voto_papai())
+        self.repetir_voto_grosso = self.c.mais_contado(self.c.repetir_voto_grosso())
+        self.apoio_de_senador_honesto = self.c.mais_contado(self.c.apoio_de_senador_honesto())
