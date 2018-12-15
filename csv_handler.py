@@ -35,16 +35,32 @@ class instance_csv:
                 candidates.add(i[16])
         return candidates
 
-def votes(respostas, candidatos):
-    for candidato in candidatos:
-        count=0
-        for resposta in respostas:
-            if resposta[16] == candidato:
-                count += 1
-        print('votos de %s: %d' %(candidato,count))
+    def votes(self, coluna):
+        candidatos = self.get_all_candidates()
+        dic = {}
+        r = self.get_all()
+        for candidato in candidatos:
+            count=0
+            dic[candidato] = {'votos':0}
+            for resposta in r.respostas:
+                if resposta[coluna] == candidato:
+                    count += 1
+            dic[candidato]['votos'] = count
+        return dic
+
+    def vencedor(self):
+        result = self.votes(16)
+        votos = []
+        for i in result:
+            votos.append(result[i]['votos'])
+        for i in result:
+            if result[i]['votos'] == max(votos):
+                return i
+            else:
+                pass
 
 i = instance_csv()
-dic = i.get_all()
+# dic = i.get_all()
 
-print(i.get_all_candidates())
-votes(dic.respostas,i.get_all_candidates())
+i.vencedor()
+# i.votes()
