@@ -34,6 +34,22 @@ class Capability:
                 dic[i[indice]]['count'] += 1
         return dic
 
+    def redes_sociais_respostas(self):
+        dic = {}
+        respostas = set()
+        resp = []
+        for i in self.dados.respostas:
+            for y in range(10,16):
+                respostas.add(i[y])
+                h = (i[y],i[16])
+                resp.append(h)
+        for i in respostas:
+            dic[i] = {'count':0}
+        for i in resp:
+            if i[1] == self.vencedor and i[0] != '':
+                dic[i[0]]['count'] += 1
+        return dic
+
     def sexo(self):
         return self.get_from_respostas(5)
 
@@ -53,8 +69,13 @@ class Capability:
         return self.get_from_respostas(9)
 
     def redes_sociais(self):
-        10-15
-        pass
+        return self.redes_sociais_respostas()
+
+    def melhores_propostas(self):    
+        return self.get_from_respostas(16)
+
+    def quel_gov_votaria(self):    
+        return self.get_from_respostas(17)
 
     def gestao_de_grosso(self):    
         return self.get_from_respostas(18) 
@@ -68,9 +89,6 @@ class Capability:
     def apoiadores_de_presidente_(self):      
         return self.get_from_respostas(21)
 
-    def apoiadores_de_haddad(self):
-        pass
-
     def apoio_bolsonaro(self):     
         return self.get_from_respostas(22)
     
@@ -83,11 +101,11 @@ class Capability:
     def repetir_voto_grosso(self):   
         return self.get_from_respostas(25)
 
-
     def apoio_de_senador_honesto(self):    
         return self.get_from_respostas(26)
 
-# d = Capability()
+d = Capability()
+# print(d.redes_sociais_respostas())
 # print(d.interessado_eleicao())
 # print(d.opniao_governador())
 # print(d.gestao_de_grosso())
@@ -99,4 +117,3 @@ class Capability:
 # print(d.primeiro_turno())
     
 
-    
