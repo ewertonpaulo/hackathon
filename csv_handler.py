@@ -54,7 +54,10 @@ class instance_csv:
         for i in result:
             votos.append(result[i]['votos'])
         for i in result:
-            if result[i]['votos'] == max(votos):
+            if result[i]['votos'] == min(votos):
                 return i
             else:
                 pass
+
+g = instance_csv()
+g.vencedor()

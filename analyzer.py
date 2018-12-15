@@ -1,13 +1,14 @@
 from csv_handler import instance_csv
+from senticnet_instance import Sentiment
 
 class perfil:
     def __init__(self):
         self.interessado = {}
 
-class Capability:
-    def __init__(self):
+class Capability(object):
+    def __init__(self, candidato):
         self.data = instance_csv()
-        self.vencedor = self.data.vencedor()
+        self.vencedor = candidato
         self.dados = self.data.get_all()
         self.perfil = perfil()
 
@@ -17,7 +18,7 @@ class Capability:
             votos.append(dic[i]['count'])
         for i in dic:
             if dic[i]['count'] == max(votos):
-                return i
+                return (i,max(votos))
             else:
                 pass
 
@@ -51,77 +52,73 @@ class Capability:
         return dic
 
     def sexo(self):
-        return self.get_from_respostas(5)
+        return (self.mais_contado(self.get_from_respostas(5)),self.get_from_respostas(5))
 
     def idade(self):
-        return self.get_from_respostas(6)
+        return (self.mais_contado(self.get_from_respostas(6)),self.get_from_respostas(6))
 
     def escolaridade(self):
-        return self.get_from_respostas(7)
+        return (self.mais_contado(self.get_from_respostas(7)),self.get_from_respostas(7))
 
     def interessado_eleicao(self):
-        return self.get_from_respostas(8) 
+        return (self.mais_contado(self.get_from_respostas(8)),self.get_from_respostas(8))
 
     def opniao_governador(self):  
-        return self.get_from_respostas(9)
+        return (self.mais_contado(self.get_from_respostas(9)),self.get_from_respostas(9))
 
     def meio_comunicação(self):       
-        return self.get_from_respostas(9)
+        return (self.mais_contado(self.get_from_respostas(9)),self.get_from_respostas(9))
 
     def redes_sociais(self):
-        return self.redes_sociais_respostas()
+        return (self.mais_contado(self.redes_sociais_respostas()),self.redes_sociais_respostas())
 
     def melhores_propostas(self):    
-        return self.get_from_respostas(16)
+        return (self.mais_contado(self.get_from_respostas(16)),self.get_from_respostas(16))
 
     def qual_gov_votaria(self):    
-        return self.get_from_respostas(17)
+        return (self.mais_contado(self.get_from_respostas(17)),self.get_from_respostas(17))
 
     def gestao_de_grosso(self):    
-        return self.get_from_respostas(18) 
+        return (self.mais_contado(self.get_from_respostas(18)),self.get_from_respostas(18))
     
     def forma_administracao_grosso(self):       
-        return self.get_from_respostas(19)
+        return (self.mais_contado(self.get_from_respostas(19)),self.get_from_respostas(19))
 
     def frase_representa(self):       
-        return self.get_from_respostas(20) 
+        return (self.mais_contado(self.get_from_respostas(20)),self.get_from_respostas(20))
 
     def apoiadores_de_presidente_(self):      
-        return self.get_from_respostas(21)
+        return (self.mais_contado(self.get_from_respostas(21)),self.get_from_respostas(21))
 
     def apoio_bolsonaro(self):     
-        return self.get_from_respostas(22)
+        return (self.mais_contado(self.get_from_respostas(22)),self.get_from_respostas(22))
     
     def primeiro_turno(self):     
-        return self.get_from_respostas(23)
+        return (self.mais_contado(self.get_from_respostas(23)),self.get_from_respostas(23))
 
     def repetir_voto_papai(self):   
-        return self.get_from_respostas(24) 
+        return (self.mais_contado(self.get_from_respostas(24)),self.get_from_respostas(24)) 
 
     def repetir_voto_grosso(self):   
-        return self.get_from_respostas(25)
+        return (self.mais_contado(self.get_from_respostas(25)),self.get_from_respostas(25))
 
     def apoio_de_senador_honesto(self):    
-        return self.get_from_respostas(26)
+        return (self.mais_contado(self.get_from_respostas(26)),self.get_from_respostas(26))
 
-class Persona:
-    def __init__(self, candidato):
-        self.c = Capability()
-        self.sexo = self.c.mais_contado(self.c.sexo())
-        self.idade = self.c.mais_contado(self.c.idade())
-        self.escolaridade = self.c.mais_contado(self.c.escolaridade())
-        self.interessado_eleicao = self.c.mais_contado(self.c.interessado_eleicao())
-        self.opniao_governador = self.c.mais_contado(self.c.opniao_governador())
-        self.meio_comunicação = self.c.mais_contado(self.c.meio_comunicação())
-        self.redes_sociais = self.c.mais_contado(self.c.redes_sociais())
-        self.melhores_propostas = self.c.mais_contado(self.c.melhores_propostas())
-        self.qual_gov_votaria = self.c.mais_contado(self.c.qual_gov_votaria())
-        self.gestao_de_grosso = self.c.mais_contado(self.c.gestao_de_grosso())
-        self.forma_administracao_grosso = self.c.mais_contado(self.c.forma_administracao_grosso())
-        self.frase_representa = self.c.mais_contado(self.c.frase_representa())
-        self.apoiadores_de_presidente_ = self.c.mais_contado(self.c.apoiadores_de_presidente_())
-        self.apoio_bolsonaro = self.c.mais_contado(self.c.apoio_bolsonaro())
-        self.primeiro_turno = self.c.mais_contado(self.c.primeiro_turno())
-        self.repetir_voto_papai = self.c.mais_contado(self.c.repetir_voto_papai())
-        self.repetir_voto_grosso = self.c.mais_contado(self.c.repetir_voto_grosso())
-        self.apoio_de_senador_honesto = self.c.mais_contado(self.c.apoio_de_senador_honesto())
+def list_personas(p):
+    return [p.sexo(),p.idade(),p.escolaridade(),p.interessado_eleicao(),p.opniao_governador(),
+    p.meio_comunicação(), p.redes_sociais(), p.melhores_propostas(), p.qual_gov_votaria(), p.gestao_de_grosso(), p.forma_administracao_grosso(),
+    p.frase_representa(), p.apoiadores_de_presidente_(), p.apoio_bolsonaro(), p.primeiro_turno(), p.repetir_voto_papai(), p.repetir_voto_grosso(),
+    p.apoio_de_senador_honesto()]
+
+def vencedor(candidato):
+    sn = Sentiment()
+    p = Capability(candidato)
+    lista = list_personas(p)
+    count = 0
+    for i in lista:
+        if sn.sentiment_avg(i[0][0]):
+            count += i[0][1]
+    return count
+
+print(vencedor('0001-FILHO DE PAPAI (PSB)'))
