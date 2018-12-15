@@ -58,9 +58,3 @@ class instance_csv:
                 return i
             else:
                 pass
-
-i = instance_csv()
-# dic = i.get_all()
-
-i.vencedor()
-# i.votes()
