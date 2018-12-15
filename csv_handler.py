@@ -35,16 +35,16 @@ class instance_csv:
                 candidates.add(i[16])
         return candidates
 
-def votes(respostas, candidato):
-    count=0
-    for resposta in respostas:
-        if resposta[16] == candidato:
-            count += 1
-        
-    print('votos de %s: %d' %(candidato,count))
+def votes(respostas, candidatos):
+    for candidato in candidatos:
+        count=0
+        for resposta in respostas:
+            if resposta[16] == candidato:
+                count += 1
+        print('votos de %s: %d' %(candidato,count))
 
 i = instance_csv()
 dic = i.get_all()
 
 print(i.get_all_candidates())
-votes(dic.respostas, '0002-PESCOÇO GROSSO (PSD)')
+votes(dic.respostas,i.get_all_candidates())
